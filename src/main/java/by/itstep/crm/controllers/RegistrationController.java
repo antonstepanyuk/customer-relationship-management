@@ -1,36 +1,42 @@
 package by.itstep.crm.controllers;
 
-import by.itstep.crm.models.Role;
-import by.itstep.crm.models.User;
-import by.itstep.crm.repositories.UserRepository;
+import by.itstep.crm.models.Customer;
+import by.itstep.crm.repositories.CustomerRepository;
+import by.itstep.crm.services.AdministratorService;
+import by.itstep.crm.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import java.util.Collections;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/registration")
 public class RegistrationController {
-    @Autowired
-    private UserRepository userRepository;
+//    @Autowired
+//    private CustomerService customerService;
 
-    @GetMapping("/registration")
-    public String registration() {
+    @Autowired
+    private CustomerRepository customerRepository;
+
+    @GetMapping
+    public String registrationForm() {
         return "registration";
     }
 
-    @PostMapping("/registration")
-    public String addUser(User user, Model model) {
-        User userFromDatabase = userRepository.findByUsername(user.getUsername());
-        if(userFromDatabase!=null){
-            model.addAttribute("message","User exists!");
+    @PostMapping//("/customer")todo ЧТО С СООБЩЕНИЯМИ НА СТРАНИЦЕ?????????
+    public String customerRegistration(
+            Customer customer,
+            Model model) {
+        Customer customerFromDatabase = customerRepository.findByUsername(customer.getUsername());
+        if (customerFromDatabase != null) {
+            model.addAttribute("message", "Пользователь с таким именем уже существует!");
             return "registration";
         }
-        user.setActive(true);
-        user.setRoles(Collections.singleton(Role.CUSTOMER));
-        userRepository.save(user);
-        return "redirect:/login";
+        customer.setActive(true);
+        customerRepository.save(customer);
+        model.addAttribute("message", "Пользователь зарегистрирован, можете выполнить вход");
+        return "login";
     }
 }
-
