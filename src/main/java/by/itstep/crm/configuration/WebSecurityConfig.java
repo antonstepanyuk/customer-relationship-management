@@ -14,27 +14,31 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-    @Autowired
-    private UserService userService;
+@Autowired
+private UserService userService ;
+
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-                .authorizeRequests()
-                    .antMatchers("/","/registration").permitAll()
+        http.
+                authorizeRequests()
+                    .antMatchers("/registration").permitAll()
                     .anyRequest().authenticated()
-                .and()
-                    .formLogin()
+                    .and()
+                .formLogin()
                     .loginPage("/login")
                     .permitAll()
-                .and()
-                    .logout()
+                    .and()
+                .logout()
                     .permitAll();
     }
+
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userService)
-                .passwordEncoder(NoOpPasswordEncoder.getInstance());
+                .passwordEncoder(NoOpPasswordEncoder.getInstance());//TODO password encription
+
     }
+
 }

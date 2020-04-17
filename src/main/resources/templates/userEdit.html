@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактирование пользователя</title>
+</head>
+<body>
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Выйти"/>
+</form>
+
+<!--<div th:if="${message!=null}">-->
+<!--    <span th:text="${message}"/>-->
+<!--</div>-->
+
+<h1 th:text="'Редактирование пользователя '+${user.username}"/>
+
+<form th:action="@{/administrator/userEdit}" method="post">
+    <div><label> <input type="text" name="username" placeholder="Логин"/> </label></div>
+    <div><label> <input type="password" name="password" placeholder="Пароль"/> </label></div>
+    <div><label> <input type="text" name="firstName" placeholder="Имя"/> </label></div>
+    <div><label> <input type="text" name="lastName" placeholder="Фамилия"/> </label></div>
+
+    <div><input type="submit" value="Сохранить изменения"/></div>
+</form>
+
+
+</body>
+</html>

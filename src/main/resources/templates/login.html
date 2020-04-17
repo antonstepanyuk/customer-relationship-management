@@ -1,17 +1,30 @@
 <!DOCTYPE html>
-<html  xmlns:th="https://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-<!--TODO thymeleaf-extras-springsecurity3 check for delete-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
 <head>
-    <title>Login</title>
+    <meta charset="UTF-8">
+    <title>Вход в CRM</title>
 </head>
 <body>
-Login page
+<h1 th:text="'Вход в CRM'"/>
+
+<div th:if="${message!=null}">
+    <span th:text="${message}"/>
+</div>
+
+<div th:if="${param.error}">
+    Неверные имя пользователя и/или пароль
+</div>
+<div th:if="${param.logout}">
+    Вы вышли из CRM
+</div>
 <form th:action="@{/login}" method="post">
-    <div><label> User Name : <input type="text" name="username"/> </label></div>
-    <div><label> Password: <input type="password" name="password"/> </label></div>
-    <div><input type="submit" value="Sign In"/></div>
+    <div><label> <input type="text" name="username" placeholder="Имя пользователя"/> </label></div>
+    <div><label> <input type="password" name="password" placeholder="Пароль"/> </label></div>
+    <div><input type="submit" value="Войти"/></div>
 </form>
-<a href="/registration">Add new user</a>
+<form th:action="@{/registration}" method="get">
+    <div><input type="submit" value="Регистрация"/></div>
+</form>
 </body>
 </html>

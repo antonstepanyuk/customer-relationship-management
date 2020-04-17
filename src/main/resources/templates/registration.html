@@ -1,17 +1,21 @@
 <!DOCTYPE html>
-<html  xmlns:th="https://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-<!--TODO thymeleaf-extras-springsecurity3 check for delete-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
 <head>
-    <title>Registration</title>
+    <meta charset="UTF-8">
+    <title>Регистрация</title>
 </head>
 <body>
-Add new user
-<p th:text="${message}"/>
+<h1 th:text="'Регистрация'"/>
+
+<div th:if="${message!=null}">
+    <span th:text="${message}"/>
+</div>
+
 <form th:action="@{/registration}" method="post">
-    <div><label> User Name : <input type="text" name="username"/> </label></div>
-    <div><label> Password: <input type="password" name="password"/> </label></div>
-    <div><input type="submit" value="Зарегистрироваться"/></div>
+    <div><label> <input type="text" name="username" placeholder="Имя пользователя"/> </label></div>
+    <div><label> <input type="password" name="password" placeholder="Пароль"/> </label></div>
+    <div><input type="submit" value="Зарегистрировать"/></div>
 </form>
 </body>
 </html>
