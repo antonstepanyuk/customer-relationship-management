@@ -7,7 +7,11 @@
 </head>
 <body>
 <h1 th:text="'Регистрация'"/>
-<div th:if="${message}?${message}"/>
+
+<div th:if="${message!=null}">
+    <span th:text="${message}"/>
+</div>
+
 <form th:action="@{/registration}" method="post">
     <div><label> <input type="text" name="username" placeholder="Имя пользователя"/> </label></div>
     <div><label> <input type="password" name="password" placeholder="Пароль"/> </label></div>

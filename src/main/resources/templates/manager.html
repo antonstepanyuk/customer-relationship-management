@@ -6,9 +6,19 @@
     <title>Главная страница</title>
 </head>
 <body>
+<h1 th:text="'Страница менеджера'"/>
+
 <form th:action="@{/logout}" method="post">
     <input type="submit" value="Выйти"/>
 </form>
-<h1 th:text="'Добро пожаловать '+${username}"/>
+
+<div th:if="${message!=null}">
+    <span th:text="${message}"/>
+</div>
+
+<h1 th:if="${username}!=null">
+    <span th:text="'Текущий пользователь '+${username}"/>
+</h1>
+
 </body>
 </html>

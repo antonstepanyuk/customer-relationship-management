@@ -1,28 +1,51 @@
 package by.itstep.crm.models;
 
-import org.hibernate.engine.internal.Cascade;
-
 import javax.persistence.*;
 import java.util.Collections;
-import java.util.Set;
+import java.util.Objects;
 
 @Entity
-@Table(name="customers")
-public class Customer extends User{
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
-    private  final String role=Role.CUSTOMER.toString();
-//        @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
-//        @ManyToOne
-//    @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
-//    @Enumerated(EnumType.STRING)
-//    private Set<Role> role;
+@Table(name = "customers")
+@PrimaryKeyJoinColumn(name = "user_id")
+public class Customer extends User  {
     private String phone;
 
+    @ManyToOne (optional=true, cascade= CascadeType.ALL)
+    @JoinColumn (name="manager_id")
+   private Manager manager;
+
     public Customer() {
-//        this.setRole(Collections.singleton(Role.CUSTOMER));
-//        this.role= Collections.singleton(Role.CUSTOMER);
+        this.setRole(Collections.singleton(Role.CUSTOMER));
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public Manager getManager() {
+        return manager;
+    }
+
+    public void setManager(Manager manager) {
+        this.manager = manager;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Customer customer = (Customer) o;
+        return Objects.equals(phone, customer.phone) &&
+                Objects.equals(manager, customer.manager);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), phone, manager);
     }
 }

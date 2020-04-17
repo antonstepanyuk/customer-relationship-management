@@ -7,7 +7,11 @@
 </head>
 <body>
 <h1 th:text="'Вход в CRM'"/>
-<div th:if="${message}?${message}"/>
+
+<div th:if="${message!=null}">
+    <span th:text="${message}"/>
+</div>
+
 <div th:if="${param.error}">
     Неверные имя пользователя и/или пароль
 </div>
