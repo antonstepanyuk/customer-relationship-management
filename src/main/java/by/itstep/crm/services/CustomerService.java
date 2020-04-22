@@ -1,6 +1,6 @@
 package by.itstep.crm.services;
 
-import by.itstep.crm.models.Customer;
+import by.itstep.crm.entities.Customer;
 import by.itstep.crm.repositories.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

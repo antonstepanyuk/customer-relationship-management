@@ -1,6 +1,6 @@
 package by.itstep.crm.controllers;
 
-import by.itstep.crm.models.Manager;
+import by.itstep.crm.entities.Manager;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;

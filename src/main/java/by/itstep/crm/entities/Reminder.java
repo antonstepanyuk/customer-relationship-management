@@ -1,4 +1,4 @@
-package by.itstep.crm.models;
+package by.itstep.crm.entities;
 
 import javax.persistence.*;
 import java.util.Calendar;

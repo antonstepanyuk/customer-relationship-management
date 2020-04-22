@@ -1,4 +1,4 @@
-package by.itstep.crm.models;
+package by.itstep.crm.entities;
 
 import org.springframework.security.core.GrantedAuthority;
 

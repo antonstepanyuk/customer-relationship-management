@@ -1,6 +1,6 @@
 package by.itstep.crm.controllers;
 
-import by.itstep.crm.models.Customer;
+import by.itstep.crm.entities.Customer;
 import by.itstep.crm.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

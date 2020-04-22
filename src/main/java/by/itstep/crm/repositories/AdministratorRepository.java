@@ -1,6 +1,6 @@
 package by.itstep.crm.repositories;
 
-import by.itstep.crm.models.Administrator;
+import by.itstep.crm.entities.Administrator;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
