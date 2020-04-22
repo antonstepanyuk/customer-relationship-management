@@ -11,14 +11,12 @@ public class Manager extends User {
     private String phone;
     @OneToMany(mappedBy = "manager", fetch = FetchType.EAGER)
     private List<Customer> customerList;
-
-    //    @OneToMany(mappedBy = "managerAuthor",fetch = FetchType.LAZY)
     @OneToMany(mappedBy = "author", fetch = FetchType.LAZY)
     private List<Reminder> reminders;
 
     public Manager() {
         this.setRole(Collections.singleton(Role.MANAGER));
-    }
+    }//todo static import????
 
     public String getPhone() {
         return phone;

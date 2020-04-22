@@ -18,6 +18,7 @@ import javax.websocket.server.PathParam;
 import java.util.Set;
 
 import static by.itstep.crm.entities.Role.ADMINISTRATOR;
+import static by.itstep.crm.entities.Role.MANAGER;
 
 @Controller
 @RequestMapping("/administrator")
@@ -69,20 +70,13 @@ public class AdministratorController {
             administratorService.createAdministrator(userDto);
             model.addAttribute("message", "Пользователь успешно добавлен!");//todo CLASS!!!
             return "administrator";
+        } else if (role.contains(MANAGER)) {
+            managerService.createManager(userDto);
+            model.addAttribute("message", "Пользователь успешно добавлен!");//todo CLASS!!!
+            return "administrator";
         }
 //
-//        if (role.contains(Role.MANAGER)) {
-//            Manager manager = new Manager();
 //
-//            manager.setUsername(username);
-//            manager.setPassword(password);
-//            manager.setFirstName(firstName);
-//            manager.setLastName(lastName);
-//
-//            managerService.save(manager);
-//
-//            model.addAttribute("message", "Пользователь успешно добавлен!");//todo CLASS!!!
-//            return "administrator";
 //
 //        }
 //        if (role.contains(Role.CUSTOMER)) {
@@ -100,7 +94,9 @@ public class AdministratorController {
 //
 //        }
 
+
         model.addAttribute("message", "Пользователь не добавлен!");//todo CLASS!!!
+        model.addAttribute("roles", Role.values());
         return "userCreate";
     }
 
