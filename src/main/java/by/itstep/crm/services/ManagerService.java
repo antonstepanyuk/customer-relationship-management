@@ -21,7 +21,8 @@ public class ManagerService implements UserDetailsService {
         return managerRepository.findByUsername(username);
     }
 
-    public void createManager(UserDto userDto) {//todo try/catch
+    public void createManager(UserDto userDto) {
+        //todo try/catch
         Manager manager = new Manager();
         manager.setUsername(userDto.getUsername());
         manager.setPassword(userDto.getPassword());

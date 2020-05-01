@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/customer")
+@RequestMapping("customer")
 @PreAuthorize("hasAuthority('CUSTOMER')")
 public class CustomerController {
 

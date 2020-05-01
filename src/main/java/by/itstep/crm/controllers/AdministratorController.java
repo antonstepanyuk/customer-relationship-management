@@ -1,24 +1,22 @@
 package by.itstep.crm.controllers;
 
 import by.itstep.crm.dto.UserDto;
-import by.itstep.crm.entities.*;
+import by.itstep.crm.entities.Administrator;
+import by.itstep.crm.entities.Role;
+import by.itstep.crm.entities.User;
 import by.itstep.crm.services.AdministratorService;
 import by.itstep.crm.services.CustomerService;
 import by.itstep.crm.services.ManagerService;
 import by.itstep.crm.services.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.websocket.server.PathParam;
 import java.util.Set;
 
-import static by.itstep.crm.entities.Role.ADMINISTRATOR;
-import static by.itstep.crm.entities.Role.MANAGER;
+import static by.itstep.crm.entities.Role.*;
 
 @Controller
 @RequestMapping("/administrator")
@@ -39,7 +37,6 @@ public class AdministratorController {
         this.userService = userService;
     }
 
-
     @GetMapping
     public String administratorMain(
             @AuthenticationPrincipal Administrator administrator,
@@ -49,13 +46,13 @@ public class AdministratorController {
         return "administrator";
     }
 
-    @GetMapping("/create_user")
+    @GetMapping("create_user")
     public String userCreationForm(Model model) {
         model.addAttribute("roles", Role.values());
         return "userCreate";
     }
 
-    @PostMapping("/create_user")
+    @PostMapping("create_user")//todo RENAME IN 1 WORD
     public String userCreate(
             UserDto userDto,//todo Dto EVERYWHERE
             Model model) {
@@ -74,40 +71,24 @@ public class AdministratorController {
             managerService.createManager(userDto);
             model.addAttribute("message", "Пользователь успешно добавлен!");//todo CLASS!!!
             return "administrator";
+        } else if (role.contains(CUSTOMER)) {
+            customerService.createCustomer(userDto);
+            model.addAttribute("message", "Пользователь успешно добавлен!");//todo CLASS!!!
+            return "administrator";
         }
-//
-//
-//
-//        }
-//        if (role.contains(Role.CUSTOMER)) {
-//            Customer customer = new Customer();
-//
-//            customer.setUsername(username);
-//            customer.setPassword(password);
-//            customer.setFirstName(firstName);
-//            customer.setLastName(lastName);
-//
-//            customerService.save(customer);
-//
-//            model.addAttribute("message", "Пользователь успешно добавлен!");//todo CLASS!!!
-//            return "administrator";
-//
-//        }
-
-
         model.addAttribute("message", "Пользователь не добавлен!");//todo CLASS!!!
         model.addAttribute("roles", Role.values());
         return "userCreate";
     }
 
-//    @GetMapping("{user}")
+//    @PostMapping("{user}")
 //    public String userEditForm(
-//            @PathVariable User user,
+////            @PathVariable UserDto userDto,
+//            @RequestParam Set<Role> role,
 //            Model model) {
-//        Set<Role> userRole = user.getRole();
+//        Set<Role> userRole = userDto.getRole();
 //        if (userRole.contains(ADMINISTRATOR)) {
 //            model.addAttribute("user", administratorService.loadUserByUsername(user.getUsername()));
-//
 //        } else if (userRole.contains(Role.MANAGER)) {
 //            model.addAttribute("user", managerService.loadUserByUsername(user.getUsername()));
 //

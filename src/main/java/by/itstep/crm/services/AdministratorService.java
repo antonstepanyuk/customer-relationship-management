@@ -21,7 +21,8 @@ public class AdministratorService implements UserDetailsService {
         return administratorRepository.findByUsername(username);
     }
 
-    public void createAdministrator(UserDto userDto) {//todo try/catch
+    public void createAdministrator(UserDto userDto) {
+        //todo try/catch???
         Administrator administrator = new Administrator();
         administrator.setUsername(userDto.getUsername());
         administrator.setPassword(userDto.getPassword());

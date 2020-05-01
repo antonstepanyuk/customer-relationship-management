@@ -1,7 +1,10 @@
 package by.itstep.crm.controllers;
 
+import by.itstep.crm.dto.UserDto;
 import by.itstep.crm.entities.Customer;
+import by.itstep.crm.entities.User;
 import by.itstep.crm.services.CustomerService;
+import by.itstep.crm.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,8 +15,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/registration")
 public class RegistrationController {
-    @Autowired
-    private CustomerService customerService;
+    private final UserService userService;
+    private final CustomerService customerService;
+
+    public RegistrationController(UserService userService, CustomerService customerService) {
+        this.userService = userService;
+        this.customerService = customerService;
+    }
+
 
     @GetMapping
     public String registrationForm() {
@@ -22,17 +31,15 @@ public class RegistrationController {
 
     @PostMapping//todo USERNAME AND PASSWORD CHECK!!!!
     public String registration(
-            Customer customer,//TODO Change to customerDto???
-            Model model) {
-        Customer customerFromDatabase = (Customer) customerService.loadUserByUsername(customer.getUsername());
-        if (customerFromDatabase != null) {
-            model.addAttribute("message", "Пользователь с таким именем уже существует!");
+            UserDto userDto,
+            Model model)    {
+        User userFromDatabase= (User) userService.loadUserByUsername(userDto.getUsername());
+        if (userFromDatabase != null) {
+            model.addAttribute("message", "Пользователь с таким именем уже существует!");//todo MESSAGES!!!
             return "registration";
         }
-        customer.setActive(true);
-        customer.setPhone("35715656");//delete!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        customerService.save(customer);
-        model.addAttribute("message", "Пользователь зарегистрирован, можете выполнить вход");
+        customerService.createCustomer(userDto);
+        model.addAttribute("message", "Пользователь зарегистрирован, можете выполнить вход");//todo MESSAGES!!!
         return "login";
     }
 }
