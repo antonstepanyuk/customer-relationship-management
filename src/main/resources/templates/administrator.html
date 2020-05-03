@@ -39,8 +39,9 @@
         </tr>
         <tr th:each="user : ${users}">
             <td><b><span th:text="${user.id}"/></b></td>
-            <td><span th:text="${user.username}"/></td>
+            <td><span th:text="${user.firstName}"/></td>
             <td><span th:text="${user.role}"/></td>
+            <!--    todo ROLE without []       -->
             </td>
             <td>
                 <form th:action="@{/administrator/${user.id}}" method="post">

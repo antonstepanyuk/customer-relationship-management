@@ -1,56 +1,15 @@
-<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org"
+
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-    <title>Main</title>
-    <meta charset="UTF-8"/>
+    <meta charset="UTF-8">
+    <title>CRM Главная страница</title>
 </head>
 <body>
+<h1 th:text="'CRM Главная страница'"/>
+<nav th:insert="parts/navbar::navbar"/>
 
-<div>
-    <form th:action="@{/logout}" method="post">
-        <input type="submit" value="Sign Out"/>
-    </form>
-    <span><a th:href="@{/user}">User List</a> </span>
-</div>
-
-<div>
-    Добавить сообщение
-    <form method="post" th:action="@{/main}">
-        <input type="text" name="title" placeholder="Заголовок">
-        <input type="text" name="text" placeholder="Текст">
-        <button type="submit">Добавить</button>
-    </form>
-</div>
-
-<div>Список Сообщений</div><!--TODO Notification!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
-
-<form method="post" th:action="@{/filter}">
-    <input type="text" name="filter">
-    <button type="submit">Найти</button>
-    <button type="reset">Сбросить фильтр</button>
-</form>
-
-<table>
-    <thead>
-    <tr>
-        <th> ID</th>
-        <th> TITLE</th>
-        <th> TEXT</th>
-        <th> AUTHOR</th>
-    </tr>
-    </thead>
-    <tbody>
-    <!--    <tr th:if="${messages.empty}">-->
-    <!--            <td colspan="2"> No Messages Available </td>-->
-    <!--        </tr>-->
-    <tr th:each="message : ${messages}">
-        <td><b><span th:text="${message.id}" /></b></td>
-        <td><span th:text="${message.title}"/></td>
-        <td><span th:text="${message.text}"/></td>
-        <td><span th:text="${message.authorName}"/></td>
-
-    </tr>
-    </tbody>
-</table>
 </body>
 </html>

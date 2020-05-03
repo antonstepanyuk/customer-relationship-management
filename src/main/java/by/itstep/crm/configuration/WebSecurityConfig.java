@@ -22,7 +22,7 @@ private UserService userService ;
     protected void configure(HttpSecurity http) throws Exception {
         http.
                 authorizeRequests()
-                    .antMatchers("/registration").permitAll()
+                    .antMatchers("/","/registration").permitAll()
                     .anyRequest().authenticated()
                     .and()
                 .formLogin()

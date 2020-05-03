@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<body>
+
+
+<nav th:fragment="navbar">
+    <div>
+        <a href="/">LarionovaSew</a>
+    </div>
+    <div>
+        <a href="">Портфолио</a>
+        <a href="">Услуги</a>
+        <a href="">Контакты</a>
+    </div>
+
+    <div sec:authorize="isAnonymous()">
+        <form th:action="@{/login}" method="get">
+            <div><input type="submit" value="Войти"/></div>
+        </form>
+        <form th:action="@{/registration}" method="get">
+            <div><input type="submit" value="Регистрация"/></div>
+        </form>
+    </div>
+
+    <div sec:authorize="isAuthenticated()">
+        <div>
+            Имя пользователя: <span sec:authentication="name"/>
+        </div>
+        <div>
+            Роль: <span sec:authentication="principal.authorities"/>
+        </div>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Выйти"/>
+        </form>
+    </div>
+
+</nav>
+</body>
+</html>
