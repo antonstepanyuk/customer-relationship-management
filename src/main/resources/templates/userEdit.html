@@ -6,13 +6,7 @@
     <title>Редактирование пользователя</title>
 </head>
 <body>
-<form th:action="@{/logout}" method="post">
-    <input type="submit" value="Выйти"/>
-</form>
-
-<!--<div th:if="${message!=null}">-->
-<!--    <span th:text="${message}"/>-->
-<!--</div>-->
+<nav th:insert="parts/navbar::navbar"/>
 
 <h1 th:text="'Редактирование пользователя '+${user.username}"/>
 

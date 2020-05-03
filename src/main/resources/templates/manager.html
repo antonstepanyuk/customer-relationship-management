@@ -7,6 +7,7 @@
 </head>
 <body>
 <h1 th:text="'Страница менеджера'"/>
+<nav th:insert="parts/navbar::navbar"/>
 
 <form th:action="@{/logout}" method="post">
     <input type="submit" value="Выйти"/>

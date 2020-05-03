@@ -20,6 +20,8 @@
     <span th:text="'Текущий пользователь '+${username}"/>
 </h1>
 
+<nav th:insert="parts/navbar::navbar"/>
+
 <form th:action="@{/administrator/create_user}" method="get">
     <div><input type="submit" value="Добавить нового пользователя"/></div>
 </form>

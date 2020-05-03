@@ -6,9 +6,7 @@
     <title>Создание пользователя</title>
 </head>
 <body>
-<form th:action="@{/logout}" method="post">
-    <input type="submit" value="Выйти"/>
-</form>
+<nav th:insert="parts/navbar::navbar"/>
 
 <div th:if="${message!=null}">
     <span th:text="${message}"/>
