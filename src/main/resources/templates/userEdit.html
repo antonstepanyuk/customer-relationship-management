@@ -6,10 +6,9 @@
     <title>Редактирование пользователя</title>
 </head>
 <body>
-<nav th:insert="parts/navbar::navbar"/>
 
 <h1 th:text="'Редактирование пользователя '+${user.username}"/>
-
+<nav th:insert="parts/navbar::navbar"/>
 <form th:action="@{/administrator/userEdit}" method="post">
     <div><label> <input type="text" name="username" placeholder="Логин"/> </label></div>
     <div><label> <input type="password" name="password" placeholder="Пароль"/> </label></div>

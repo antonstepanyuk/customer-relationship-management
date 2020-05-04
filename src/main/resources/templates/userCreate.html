@@ -1,32 +1,39 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="https://www.thymeleaf.org">
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-    <meta charset="UTF-8">
+    <th:block th:insert="parts/common::header"/>
     <title>Создание пользователя</title>
 </head>
 <body>
-<nav th:insert="parts/navbar::navbar"/>
 
-<div th:if="${message!=null}">
-    <span th:text="${message}"/>
+<th:block th:insert="parts/navbar::navbar"/>
+
+<div class="container">
+    <div>
+        <h1 sec:authorize="hasAuthority('ADMINISTRATOR')" th:text="'Добавление пользователя'"/>
+        <h1 sec:authorize="hasAuthority('MANAGER')" th:text="'Добавление клиента'"/>
+    </div>
+    <div>
+        <form th:action="@{/administrator/create_user}" method="post">
+            <div><label> <input type="text" name="username" placeholder="Логин"/> </label></div>
+            <div><label> <input type="password" name="password" placeholder="Пароль"/> </label></div>
+            <div><label> <input type="text" name="firstName" placeholder="Имя"/> </label></div>
+            <div><label> <input type="text" name="lastName" placeholder="Фамилия"/> </label></div>
+
+            <div sec:authorize="hasAuthority('ADMINISTRATOR')">
+                <div>Тип пользователя:</div>
+                <div><label> <input type="radio" th:name="role" th:text="Менеджер" th:value="MANAGER"/></label></div>
+                <div><label> <input type="radio" th:name="role" th:text="Клиент" th:value="CUSTOMER"/> </label></div>
+            </div>
+
+            <div><input type="submit" value="Сохранить"/></div>
+        </form>
+    </div>
 </div>
 
-<h1 th:text="'Создание пользователя'"/>
-<form th:action="@{/administrator/create_user}" method="post">
-    <div><label> <input type="text" name="username" placeholder="Логин"/> </label></div>
-    <div><label> <input type="password" name="password" placeholder="Пароль"/> </label></div>
-    <div><label> <input type="text" name="firstName" placeholder="Имя"/> </label></div>
-    <div><label> <input type="text" name="lastName" placeholder="Фамилия"/> </label></div>
-    <div th:each="role : ${roles}">
-        <label>
-            <input type="radio" th:name="role" th:text="${role}" th:value="${role}"/>
-        </label>
-    </div>
 
-    <div><input type="submit" value="Сохранить"/></div>
-</form>
-
-
+<th:block th:insert="parts/common::scripts"/>
 </body>
 </html>

@@ -2,29 +2,31 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="https://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <th:block th:insert="parts/common::header"/>
     <title>Вход в CRM</title>
 </head>
 <body>
-<h1 th:text="'Вход в CRM'"/>
 
-<div th:if="${message!=null}">
-    <span th:text="${message}"/>
+<th:block th:insert="parts/navbar::navbar"/>
+
+<div class="container">
+    <h1 th:text="'Вход в CRM'"/>
+
+    <!--<div th:if="${param.error}">-->
+    <!--    Неверные имя пользователя и/или пароль-->
+    <!--</div>-->
+    <!--<div th:if="${param.logout}">-->
+    <!--    Вы вышли из CRM-->
+    <div>
+        <form th:action="@{/login}" method="post">
+            <div><label> <input type="text" name="username" placeholder="Имя пользователя"/> </label></div>
+            <div><label> <input type="password" name="password" placeholder="Пароль"/> </label></div>
+            <div><input type="submit" value="Войти"/></div>
+        </form>
+    </div>
 </div>
 
-<div th:if="${param.error}">
-    Неверные имя пользователя и/или пароль
-</div>
-<div th:if="${param.logout}">
-    Вы вышли из CRM
-</div>
-<form th:action="@{/login}" method="post">
-    <div><label> <input type="text" name="username" placeholder="Имя пользователя"/> </label></div>
-    <div><label> <input type="password" name="password" placeholder="Пароль"/> </label></div>
-    <div><input type="submit" value="Войти"/></div>
-</form>
-<form th:action="@{/registration}" method="get">
-    <div><input type="submit" value="Регистрация"/></div>
-</form>
+
+<th:block th:insert="parts/common::scripts"/>
 </body>
 </html>

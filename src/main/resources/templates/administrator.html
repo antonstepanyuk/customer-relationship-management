@@ -2,62 +2,52 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="https://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Главная</title>
+    <th:block th:insert="parts/common::header"/>
+    <title>Панель администратора</title>
 </head>
 <body>
-<h1 th:text="'Страница администратора'"/>
+<th:block th:insert="parts/navbar::navbar"/>
 
-<form th:action="@{/logout}" method="post">
-    <input type="submit" value="Выйти"/>
-</form>
+<div class="container">
 
-<div th:if="${message!=null}">
-    <span th:text="${message}"/>
-</div>
+    <form th:action="@{/administrator/create_user}" method="get">
+        <div><input type="submit" value="Добавить нового пользователя"/></div>
+    </form>
 
-<h1 th:if="${username}!=null">
-    <span th:text="'Текущий пользователь '+${username}"/>
-</h1>
-
-<nav th:insert="parts/navbar::navbar"/>
-
-<form th:action="@{/administrator/create_user}" method="get">
-    <div><input type="submit" value="Добавить нового пользователя"/></div>
-</form>
-
-<div>Список всех пользователей
-    <table cellpadding="5" cellspacing="10">
-        <thead>
-        <tr>
-            <th> ID</th>
-            <th> ИМЯ ПОЛЬЗОВАТЕЛЯ</th>
-            <th> ПРАВА ДОСТУПА</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:if="${#lists.isEmpty(users)}">
-            <td colspan="3"> Пользователи отсутствуют!</td>
-        </tr>
-        <tr th:each="user : ${users}">
-            <td><b><span th:text="${user.id}"/></b></td>
-            <td><span th:text="${user.firstName}"/></td>
-            <td><span th:text="${user.role}"/></td>
-            <!--    todo ROLE without []       -->
-            </td>
-            <td>
-                <form th:action="@{/administrator/${user.id}}" method="post">
-                    <div><input type="submit" value="Редактировать"/></div>
-                </form>
-            </td>
-        </tr>
-        </tbody>
+    <div>Список всех пользователей
+        <table cellpadding="5" cellspacing="10">
+            <thead>
+            <tr>
+                <th> ID</th>
+                <th> ИМЯ ПОЛЬЗОВАТЕЛЯ</th>
+                <th> ПРАВА ДОСТУПА</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${#lists.isEmpty(users)}">
+                <td colspan="3"> Пользователи отсутствуют!</td>
+            </tr>
+            <tr th:each="user : ${users}">
+                <td><b><span th:text="${user.id}"/></b></td>
+                <td><span th:text="${user.firstName}"/></td>
+                <td><span th:text="${user.role}"/></td>
+                <!--    todo ROLE without []       -->
+                </td>
+                <td>
+                    <form th:action="@{/administrator/${user.id}}" method="post">
+                        <div><input type="submit" value="Редактировать"/></div>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    </tr>
+    </tbody>
     </table>
+
 </div>
 
-</tr>
-</tbody>
-</table>
-
+<th:block th:insert="parts/common::scripts"/>
 </body>
 </html>

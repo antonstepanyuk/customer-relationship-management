@@ -13,8 +13,9 @@
 </div>
 
 <form th:action="@{/registration}" method="post">
-    <div><label> <input type="text" name="username" placeholder="Имя пользователя"/> </label></div>
-    <div><label> <input type="password" name="password" placeholder="Пароль"/> </label></div>
+    <div><label> <input type="text" name="username" placeholder="Введите имя пользователя"/> </label></div>
+    <div><label> <input type="password" name="password" placeholder="Придумайте пароль"/> </label></div>
+    <div><label> <input type="password" name="passwordСonfirmation" placeholder="Подтвердите пароль"/> </label></div>
     <div><input type="submit" value="Зарегистрировать"/></div>
 </form>
 </body>

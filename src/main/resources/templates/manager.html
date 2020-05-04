@@ -2,24 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="https://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Главная страница</title>
+    <th:block th:insert="parts/common::header"/>
+    <title>Панель менеджера</title>
 </head>
 <body>
-<h1 th:text="'Страница менеджера'"/>
-<nav th:insert="parts/navbar::navbar"/>
 
-<form th:action="@{/logout}" method="post">
-    <input type="submit" value="Выйти"/>
-</form>
+<th:block th:insert="parts/navbar::navbar"/>
 
-<div th:if="${message!=null}">
-    <span th:text="${message}"/>
+<div class="container">
+    Менеджер Менеджер Менеджер Менеджер
+    Менеджер Менеджер Менеджер Менеджер Менеджер
+    Менеджер Менеджер Менеджер Менеджер
+    Менеджер Менеджер Менеджер Менеджер Менеджер
+    Менеджер Менеджер Менеджер Менеджер
+    Менеджер Менеджер Менеджер Менеджер Менеджер
 </div>
 
-<h1 th:if="${username}!=null">
-    <span th:text="'Текущий пользователь '+${username}"/>
-</h1>
 
+<th:block th:insert="parts/common::scripts"/>
 </body>
 </html>

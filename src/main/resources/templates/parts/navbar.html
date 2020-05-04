@@ -2,41 +2,80 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-
 <body>
+<th:block th:fragment="navbar">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
+        <a class="navbar-brand" href="/">LarionovaSew</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Портфолио</a>
+                    <!--        todo add page link-->
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Услуги</a>
+                    <!--        todo add page link-->
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Контакты</a>
+                    <!--        todo add page link-->
+                </li>
 
 
-<nav th:fragment="navbar">
-    <div>
-        <a href="/">LarionovaSew</a>
-    </div>
-    <div>
-        <a href="">Портфолио</a>
-        <a href="">Услуги</a>
-        <a href="">Контакты</a>
-    </div>
+                <li sec:authorize="hasAuthority('ADMINISTRATOR')" class="nav-item">
+                    <a class="nav-link" th:href="@{/administrator}">Панель администратора</a>
+                </li>
+                <li sec:authorize="hasAuthority('MANAGER')" class="nav-item">
+                    <a class="nav-link" th:href="@{/manager}">Панель менеджера</a>
+                </li>
+                <li sec:authorize="hasAuthority('CUSTOMER')" class="nav-item">
+                    <a class="nav-link" th:href="@{/customer}">Личный кабинет</a>
+                </li>
+            </ul>
 
-    <div sec:authorize="isAnonymous()">
-        <form th:action="@{/login}" method="get">
-            <div><input type="submit" value="Войти"/></div>
-        </form>
-        <form th:action="@{/registration}" method="get">
-            <div><input type="submit" value="Регистрация"/></div>
-        </form>
-    </div>
 
-    <div sec:authorize="isAuthenticated()">
-        <div>
-            Имя пользователя: <span sec:authentication="name"/>
+            <ul class="navbar-nav ">
+                <li class="nav-item mx-1" sec:authorize="isAnonymous()"
+                    th:unless="${#execInfo.getProcessedTemplateName()}=='login'">
+                    <form th:action="@{/login}" method="get">
+                        <input type="submit" value="Войти"/>
+                    </form>
+                </li>
+                <li class="nav-item ml-1" sec:authorize="isAnonymous()" >
+                    <form th:action="@{/registration}" method="get">
+                        <input type="submit" value="Регистрация"/>
+                    </form>
+                </li>
+                <li class="nav-item ml-1" sec:authorize="isAuthenticated()">
+                    <form  th:action="@{/logout}" method="post">
+                        <input type="submit" value="Выйти"/>
+                    </form>
+                </li>
+            </ul>
         </div>
-        <div>
-            Роль: <span sec:authentication="principal.authorities"/>
-        </div>
-        <form th:action="@{/logout}" method="post">
-            <input type="submit" value="Выйти"/>
-        </form>
-    </div>
+    </nav>
+</th:block>
 
-</nav>
+<!--</div>-->
+
+<!--    <div sec:authorize="isAuthenticated()">-->
+<!--        <div>-->
+<!--            Имя пользователя: <span sec:authentication="name"/>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            Роль: <span sec:authentication="principal.authorities"/>-->
+<!--        </div>-->
+<!--        <form th:action="@{/logout}" method="post">-->
+<!--            <input type="submit" value="Выйти"/>-->
+<!--        </form>-->
+
+<!--    </div>-->
+
+<!--</nav>-->
 </body>
 </html>

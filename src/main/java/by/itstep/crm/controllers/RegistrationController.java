@@ -23,7 +23,6 @@ public class RegistrationController {
         this.customerService = customerService;
     }
 
-
     @GetMapping
     public String registrationForm() {
         return "registration";

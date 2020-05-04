@@ -28,6 +28,7 @@ public class ManagerService implements UserDetailsService {
         manager.setPassword(userDto.getPassword());
         manager.setFirstName(userDto.getFirstName());
         manager.setLastName(userDto.getLastName());
+        manager.setActive(true);
         managerRepository.save(manager);
     }
 

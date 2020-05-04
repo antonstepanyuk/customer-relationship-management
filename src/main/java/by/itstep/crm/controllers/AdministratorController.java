@@ -22,16 +22,14 @@ import static by.itstep.crm.entities.Role.*;
 @RequestMapping("/administrator")
 @PreAuthorize("hasAuthority('ADMINISTRATOR')")
 public class AdministratorController {
-    private final AdministratorService administratorService;
+
     private final ManagerService managerService;
     private final CustomerService customerService;
     private final UserService userService;
 
-    public AdministratorController(AdministratorService administratorService,
-                                   ManagerService managerService,
+    public AdministratorController(ManagerService managerService,
                                    CustomerService customerService,
                                    UserService userService) {
-        this.administratorService = administratorService;
         this.managerService = managerService;
         this.customerService = customerService;
         this.userService = userService;
@@ -63,11 +61,7 @@ public class AdministratorController {
             return "userCreate";
         }
         Set<Role> role = userDto.getRole();
-        if (role.contains(ADMINISTRATOR)) {
-            administratorService.createAdministrator(userDto);
-            model.addAttribute("message", "Пользователь успешно добавлен!");//todo CLASS!!!
-            return "administrator";
-        } else if (role.contains(MANAGER)) {
+        if (role.contains(MANAGER)) {
             managerService.createManager(userDto);
             model.addAttribute("message", "Пользователь успешно добавлен!");//todo CLASS!!!
             return "administrator";
