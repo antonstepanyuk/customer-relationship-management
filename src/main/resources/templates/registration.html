@@ -2,21 +2,26 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="https://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <th:block th:insert="parts/common::header"/>
     <title>Регистрация</title>
 </head>
 <body>
-<h1 th:text="'Регистрация'"/>
 
-<div th:if="${message!=null}">
-    <span th:text="${message}"/>
+<th:block th:insert="parts/navbar::navbar"/>
+
+<div class="container ">
+    <h1 th:text="'Регистрация'"/>
+    <div>
+        <form th:action="@{/registration}" method="post">
+            <div><label> <input type="text" name="username" placeholder="Введите имя пользователя"/> </label></div>
+            <div><label> <input type="password" name="password" placeholder="Придумайте пароль"/> </label></div>
+            <div><label> <input type="password" name="passwordСonfirmation" placeholder="Подтвердите пароль"/> </label>
+            </div>
+            <div><input type="submit" value="Зарегистрировать"/></div>
+        </form>
+    </div>
 </div>
 
-<form th:action="@{/registration}" method="post">
-    <div><label> <input type="text" name="username" placeholder="Введите имя пользователя"/> </label></div>
-    <div><label> <input type="password" name="password" placeholder="Придумайте пароль"/> </label></div>
-    <div><label> <input type="password" name="passwordСonfirmation" placeholder="Подтвердите пароль"/> </label></div>
-    <div><input type="submit" value="Зарегистрировать"/></div>
-</form>
+<th:block th:insert="parts/common::scripts"/>
 </body>
 </html>

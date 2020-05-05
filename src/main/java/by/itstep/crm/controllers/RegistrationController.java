@@ -1,11 +1,9 @@
 package by.itstep.crm.controllers;
 
 import by.itstep.crm.dto.UserDto;
-import by.itstep.crm.entities.Customer;
 import by.itstep.crm.entities.User;
 import by.itstep.crm.services.CustomerService;
 import by.itstep.crm.services.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,11 +32,9 @@ public class RegistrationController {
             Model model)    {
         User userFromDatabase= (User) userService.loadUserByUsername(userDto.getUsername());
         if (userFromDatabase != null) {
-            model.addAttribute("message", "Пользователь с таким именем уже существует!");//todo MESSAGES!!!
             return "registration";
         }
         customerService.createCustomer(userDto);
-        model.addAttribute("message", "Пользователь зарегистрирован, можете выполнить вход");//todo MESSAGES!!!
         return "login";
     }
 }

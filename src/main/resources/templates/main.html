@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+    <th:block th:insert="parts/common::header"/>
+
+    <th:block  th:switch="authentication.role.name">
+        <title th:case="'ADMINISTRATOR'">Панель администратора</title>
+        <title th:case="'MANAGER'">Панель менеджера</title>
+        <title th:case="'CUSTOMER'">Личный кабинет</title>
+    </th:block>
+</head>
+<body>
+<th:block th:insert="parts/navbar::navbar"/>
+
+<div class="container-fluid">
+
+    Main info Main info Main info Main info Main infoMain infoMain infoMain info Main info
+    Main info Main info Main infoMain info Main info Main info Main infoMain infoMain infoMain info
+
+    Main info Main info Main info Main info Main infoMain infoMain infoMain info Main info
+    Main info Main info Main infoMain info Main info Main info Main infoMain infoMain infoMain info
+
+    Main info Main info Main info Main info Main infoMain infoMain infoMain info Main info
+    Main info Main info Main infoMain info Main info Main info Main infoMain infoMain infoMain info
+
+    Main info Main info Main info Main info Main infoMain infoMain infoMain info Main info
+    Main info Main info Main infoMain info Main info Main info Main infoMain infoMain infoMain info
+
+    Main info Main info Main info Main info Main infoMain infoMain infoMain info Main info
+    Main info Main info Main infoMain info Main info Main info Main infoMain infoMain infoMain info
+
+    Main info Main info Main info Main info Main infoMain infoMain infoMain info Main info
+    Main info Main info Main infoMain info Main info Main info Main infoMain infoMain infoMain info
+
+    Main info Main info Main info Main info Main infoMain infoMain infoMain info Main info
+    Main info Main info Main infoMain info Main info Main info Main infoMain infoMain infoMain info
+    Main info Main info Main info Main info Main infoMain infoMain infoMain info Main info
+    Main info Main info Main infoMain info Main info Main info Main infoMain infoMain infoMain info
+    Main info Main info Main info Main info Main infoMain infoMain infoMain info Main info
+    Main info Main info Main infoMain info Main info Main info Main infoMain infoMain infoMain info
+    Main info Main info Main info Main info Main infoMain infoMain infoMain info Main info
+    Main info Main info Main infoMain info Main info Main info Main infoMain infoMain infoMain info
+
+    Main info Main info Main info Main info Main infoMain infoMain infoMain info Main info
+    Main info Main info Main infoMain info Main info Main info Main infoMain infoMain infoMain info
+
+    Main info Main info Main info Main info Main infoMain infoMain infoMain info Main info
+    Main info Main info Main infoMain info Main info Main info Main infoMain infoMain infoMain info
+    Main info Main info Main info Main info Main infoMain infoMain infoMain info Main info
+    Main info Main info Main infoMain info Main info Main info Main infoMain infoMain infoMain info
+
+    Main info Main info Main info Main info Main infoMain infoMain infoMain info Main info
+    Main info Main info Main infoMain info Main info Main info Main infoMain infoMain infoMain info
+
+    Main info Main info Main info Main info Main infoMain infoMain infoMain info Main info
+    Main info Main info Main infoMain info Main info Main info Main infoMain infoMain infoMain info
+
+
+    <form th:action="@{/administrator/create_user}" method="get">
+        <div><input type="submit" value="Добавить нового пользователя"/></div>
+    </form>
+
+    <div>Список всех пользователей
+        <table cellpadding="5" cellspacing="10">
+            <thead>
+            <tr>
+                <th> ID</th>
+                <th> ИМЯ ПОЛЬЗОВАТЕЛЯ</th>
+                <th> ПРАВА ДОСТУПА</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${#lists.isEmpty(users)}">
+                <td colspan="3"> Пользователи отсутствуют!</td>
+            </tr>
+            <tr th:each="user : ${users}">
+                <td><b><span th:text="${user.id}"/></b></td>
+                <td><span th:text="${user.firstName}"/></td>
+                <td><span th:text="${user.role}"/></td>
+                <!--    todo ROLE without []       -->
+                </td>
+                <td>
+                    <form th:action="@{/administrator/${user.id}}" method="post">
+                        <div><input type="submit" value="Редактировать"/></div>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    </tr>
+    </tbody>
+    </table>
+
+</div>
+
+<th:block th:insert="parts/common::scripts"/>
+</body>
+</html>

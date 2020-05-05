@@ -9,14 +9,8 @@
 
 <th:block th:insert="parts/navbar::navbar"/>
 
-<div class="container">
-    <h1 th:text="'Вход в CRM'"/>
-
-    <!--<div th:if="${param.error}">-->
-    <!--    Неверные имя пользователя и/или пароль-->
-    <!--</div>-->
-    <!--<div th:if="${param.logout}">-->
-    <!--    Вы вышли из CRM-->
+<div class="container ">
+    <h1 th:text="'Вход'"/>
     <div>
         <form th:action="@{/login}" method="post">
             <div><label> <input type="text" name="username" placeholder="Имя пользователя"/> </label></div>
@@ -25,7 +19,6 @@
         </form>
     </div>
 </div>
-
 
 <th:block th:insert="parts/common::scripts"/>
 </body>
