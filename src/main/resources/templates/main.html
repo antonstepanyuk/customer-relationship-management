@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="https://www.thymeleaf.org">
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <th:block th:insert="parts/common::header"/>
 
-    <th:block  th:switch="authentication.role.name">
+    <th:block th:switch="authentication.role.name">
         <title th:case="'ADMINISTRATOR'">Панель администратора</title>
         <title th:case="'MANAGER'">Панель менеджера</title>
         <title th:case="'CUSTOMER'">Личный кабинет</title>
@@ -14,87 +15,92 @@
 <th:block th:insert="parts/navbar::navbar"/>
 
 <div class="container-fluid">
+    <div class="row">
+        <!--     Left Menu-->
+        <div class="col-lg-2 bg-dark">
+            <ul class="nav flex-column nav-pills">
+                <li sec:authorize="hasAuthority('ADMINISTRATOR')" class="nav-item">
+                    <a class="nav-link active" th:href="@{/product_type}">Типы продуктов</a>
+                </li>
+                <!--                <li class="nav-item">-->
+                <!--                    <a class="nav-link" href="#">Link</a>-->
+                <!--                </li>-->
+                <!--                <li class="nav-item">-->
+                <!--                    <a class="nav-link" href="#">Link</a>-->
+                <!--                </li>-->
+                <!--                <li class="nav-item">-->
+                <!--                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>-->
+                <!--                </li>-->
+            </ul>
+        </div>
 
-    Main info Main info Main info Main info Main infoMain infoMain infoMain info Main info
-    Main info Main info Main infoMain info Main info Main info Main infoMain infoMain infoMain info
+        <div class="col-lg-7">col-lg-6
+            <div class="row">
+                <!--            UL panel-->
+                <div class="col-lg-4">
 
-    Main info Main info Main info Main info Main infoMain infoMain infoMain info Main info
-    Main info Main info Main infoMain info Main info Main info Main infoMain infoMain infoMain info
+                    Main info Main info Main info Main info Main infoMain infoMain infoMain info Main info
+                    Main info Main info Main infoMain info Main info Main info Main infoMain infoMain infoMain info
 
-    Main info Main info Main info Main info Main infoMain infoMain infoMain info Main info
-    Main info Main info Main infoMain info Main info Main info Main infoMain infoMain infoMain info
+                    Main info Main info Main info Main info Main infoMain infoMain infoMain info Main info
+                    Main info Main info Main infoMain info Main info Main info Main infoMain infoMain infoMain info
 
-    Main info Main info Main info Main info Main infoMain infoMain infoMain info Main info
-    Main info Main info Main infoMain info Main info Main info Main infoMain infoMain infoMain info
+                </div>
 
-    Main info Main info Main info Main info Main infoMain infoMain infoMain info Main info
-    Main info Main info Main infoMain info Main info Main info Main infoMain infoMain infoMain info
+                <!--                UR panel-->
+                <div class="col-lg-3">
 
-    Main info Main info Main info Main info Main infoMain infoMain infoMain info Main info
-    Main info Main info Main infoMain info Main info Main info Main infoMain infoMain infoMain info
+                    Main info Main info Main info Main info Main infoMain infoMain infoMain info Main info
+                    Main info Main info Main infoMain info Main info Main info Main infoMain infoMain infoMain info
 
-    Main info Main info Main info Main info Main infoMain infoMain infoMain info Main info
-    Main info Main info Main infoMain info Main info Main info Main infoMain infoMain infoMain info
-    Main info Main info Main info Main info Main infoMain infoMain infoMain info Main info
-    Main info Main info Main infoMain info Main info Main info Main infoMain infoMain infoMain info
-    Main info Main info Main info Main info Main infoMain infoMain infoMain info Main info
-    Main info Main info Main infoMain info Main info Main info Main infoMain infoMain infoMain info
-    Main info Main info Main info Main info Main infoMain infoMain infoMain info Main info
-    Main info Main info Main infoMain info Main info Main info Main infoMain infoMain infoMain info
+                    Main info Main info Main info Main info Main infoMain infoMain infoMain info Main info
+                    Main info Main info Main infoMain info Main info Main info Main infoMain infoMain infoMain info
 
-    Main info Main info Main info Main info Main infoMain infoMain infoMain info Main info
-    Main info Main info Main infoMain info Main info Main info Main infoMain infoMain infoMain info
+                    Main info Main info Main info Main info Main infoMain infoMain infoMain info Main info
+                    Main info Main info Main infoMain info Main info Main info Main infoMain infoMain infoMain info
 
-    Main info Main info Main info Main info Main infoMain infoMain infoMain info Main info
-    Main info Main info Main infoMain info Main info Main info Main infoMain infoMain infoMain info
-    Main info Main info Main info Main info Main infoMain infoMain infoMain info Main info
-    Main info Main info Main infoMain info Main info Main info Main infoMain infoMain infoMain info
+                    Main info Main info Main info Main info Main infoMain infoMain infoMain info Main info
+                    Main info Main info Main infoMain info Main info Main info Main infoMain infoMain infoMain info
 
-    Main info Main info Main info Main info Main infoMain infoMain infoMain info Main info
-    Main info Main info Main infoMain info Main info Main info Main infoMain infoMain infoMain info
+                    Main info Main info Main info Main info Main infoMain infoMain infoMain info Main info
+                    Main info Main info Main infoMain info Main info Main info Main infoMain infoMain infoMain info
+                </div>
+            </div>
+            <!--            D Panel-->
+            <div class="row">
+                Main info Main info Main info Main info Main infoMain infoMain infoMain info Main info
+                Main info Main info Main infoMain info Main info Main info Main infoMain infoMain infoMain info
 
-    Main info Main info Main info Main info Main infoMain infoMain infoMain info Main info
-    Main info Main info Main infoMain info Main info Main info Main infoMain infoMain infoMain info
+                Main info Main info Main info Main info Main infoMain infoMain infoMain info Main info
+                Main info Main info Main infoMain info Main info Main info Main infoMain infoMain infoMain info
+                Main info Main info Main info Main info Main infoMain infoMain infoMain info Main info
+                Main info Main info Main infoMain info Main info Main info Main infoMain infoMain infoMain info
+                Main info Main info Main info Main info Main infoMain infoMain infoMain info Main info
+                Main info Main info Main infoMain info Main info Main info Main infoMain infoMain infoMain info
+                Main info Main info Main info Main info Main infoMain infoMain infoMain info Main info
+                Main info Main info Main infoMain info Main info Main info Main infoMain infoMain infoMain info
 
+            </div>
+        </div>
+        <!--        Notifications-->
+        <div class="col-lg-3">
+            Main info Main info Main info Main info Main infoMain infoMain infoMain info Main info
+            Main info Main info Main infoMain info Main info Main info Main infoMain infoMain infoMain info
 
-    <form th:action="@{/administrator/create_user}" method="get">
-        <div><input type="submit" value="Добавить нового пользователя"/></div>
-    </form>
+            Main info Main info Main info Main info Main infoMain infoMain infoMain info Main info
+            Main info Main info Main infoMain info Main info Main info Main infoMain infoMain infoMain info
+            Main info Main info Main info Main info Main infoMain infoMain infoMain info Main info
+            Main info Main info Main infoMain info Main info Main info Main infoMain infoMain infoMain info
+            Main info Main info Main info Main info Main infoMain infoMain infoMain info Main info
+            Main info Main info Main infoMain info Main info Main info Main infoMain infoMain infoMain info
+            Main info Main info Main info Main info Main infoMain infoMain infoMain info Main info
+            Main info Main info Main infoMain info Main info Main info Main infoMain infoMain infoMain info
 
-    <div>Список всех пользователей
-        <table cellpadding="5" cellspacing="10">
-            <thead>
-            <tr>
-                <th> ID</th>
-                <th> ИМЯ ПОЛЬЗОВАТЕЛЯ</th>
-                <th> ПРАВА ДОСТУПА</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:if="${#lists.isEmpty(users)}">
-                <td colspan="3"> Пользователи отсутствуют!</td>
-            </tr>
-            <tr th:each="user : ${users}">
-                <td><b><span th:text="${user.id}"/></b></td>
-                <td><span th:text="${user.firstName}"/></td>
-                <td><span th:text="${user.role}"/></td>
-                <!--    todo ROLE without []       -->
-                </td>
-                <td>
-                    <form th:action="@{/administrator/${user.id}}" method="post">
-                        <div><input type="submit" value="Редактировать"/></div>
-                    </form>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+            Main info Main info Main info Main info Main infoMain infoMain infoMain info Main info
+            Main info Main info Main infoMain info Main info Main info Main infoMain infoMain infoMain info
+        </div>
     </div>
-    </tr>
-    </tbody>
-    </table>
-
 </div>
-
 <th:block th:insert="parts/common::scripts"/>
 </body>
 </html>

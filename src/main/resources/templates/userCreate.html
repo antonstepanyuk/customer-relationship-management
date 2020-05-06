@@ -11,10 +11,10 @@
 <th:block th:insert="parts/navbar::navbar"/>
 
 <div class="container">
-    <div>
+    <th:block>
         <h1 sec:authorize="hasAuthority('ADMINISTRATOR')" th:text="'Добавление пользователя'"/>
         <h1 sec:authorize="hasAuthority('MANAGER')" th:text="'Добавление клиента'"/>
-    </div>
+    </th:block>
     <div>
         <form th:action="@{/administrator/create_user}" method="post">
             <div><label> <input type="text" name="username" placeholder="Логин"/> </label></div>

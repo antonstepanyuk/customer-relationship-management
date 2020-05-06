@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+<!--      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">-->
+<head>
+    <th:block th:insert="parts/common::header"/>
+    <title>Типы продуктов</title>
+</head>
+<body>
+
+<th:block th:insert="parts/navbar::navbar"/>
+
+<div class="container">
+
+    <h1 th:text="'Редактировать тип продукта'"/>
+
+    <div>
+        <form th:action="@{/product_type/save}" method="post">
+            <div><label> <input type="text" name="typeName" th:placeholder="${productType.getTypeName()}"> </label></div>
+            <div><label> <input type="text" name="comment" th:placeholder="${productType.getComment()}"/> </label></div>
+            <div>
+                <input type="hidden" th:value="${productType.getId()}" name="typeId">
+                <input type="submit" value="Сохранить изменения"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<th:block th:insert="parts/common::scripts"/>
+</body>
+</html>

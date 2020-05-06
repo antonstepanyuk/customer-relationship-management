@@ -2,9 +2,23 @@ package by.itstep.crm.entities;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import javax.persistence.*;
+
+import javax.persistence.CollectionTable;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.Table;
 import java.util.Collection;
 import java.util.Set;
+
+import static javax.persistence.EnumType.STRING;
+import static javax.persistence.FetchType.EAGER;
 
 
 @Entity
@@ -17,9 +31,9 @@ public class User implements UserDetails {
     private String username;
     private String password;
     private boolean active;
-    @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
+    @ElementCollection(targetClass = Role.class, fetch = EAGER)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
-    @Enumerated(EnumType.STRING)
+    @Enumerated(STRING)
     private Set<Role> role;
     private String firstName;
     private String lastName;

@@ -4,18 +4,21 @@ import javax.persistence.*;
 import java.util.Collections;
 import java.util.Objects;
 
+import static by.itstep.crm.entities.Role.CUSTOMER;
+import static javax.persistence.CascadeType.ALL;
+
 @Entity
 @Table(name = "customers")
 @PrimaryKeyJoinColumn(name = "user_id")
-public class Customer extends User  {
+public class Customer extends User {
     private String phone;
 
-    @ManyToOne (optional=true, cascade= CascadeType.ALL)
-    @JoinColumn (name="manager_id")
-   private Manager manager;
+    @ManyToOne(optional = true, cascade = ALL)
+    @JoinColumn(name = "manager_id")
+    private Manager manager;
 
     public Customer() {
-        this.setRole(Collections.singleton(Role.CUSTOMER));
+        this.setRole(Collections.singleton(CUSTOMER));
     }
 
     public String getPhone() {

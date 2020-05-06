@@ -11,7 +11,7 @@ public class Manager extends User {
     private String phone;
     @OneToMany(mappedBy = "manager", fetch = FetchType.EAGER)
     private List<Customer> customerList;
-    @OneToMany(mappedBy = "author", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "author", fetch = FetchType.LAZY)//todo in USER
     private List<Reminder> reminders;
 
     public Manager() {

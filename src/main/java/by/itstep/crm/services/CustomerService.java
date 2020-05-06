@@ -1,7 +1,6 @@
 package by.itstep.crm.services;
 
 import by.itstep.crm.dto.UserDto;
-import by.itstep.crm.entities.Administrator;
 import by.itstep.crm.entities.Customer;
 import by.itstep.crm.repositories.CustomerRepository;
 import org.springframework.security.core.userdetails.UserDetails;
