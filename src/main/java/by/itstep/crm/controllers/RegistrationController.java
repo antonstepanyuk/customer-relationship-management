@@ -1,17 +1,15 @@
 package by.itstep.crm.controllers;
 
 import by.itstep.crm.dto.UserDto;
-import by.itstep.crm.entities.User;
 import by.itstep.crm.services.CustomerService;
 import by.itstep.crm.services.UserService;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/registration")
+@RequestMapping("registration")
 public class RegistrationController {
     private final UserService userService;
     private final CustomerService customerService;
@@ -27,14 +25,11 @@ public class RegistrationController {
     }
 
     @PostMapping//todo USERNAME AND PASSWORD CHECK!!!!
-    public String registration(
-            UserDto userDto,
-            Model model)    {
-        User userFromDatabase= (User) userService.loadUserByUsername(userDto.getUsername());
-        if (userFromDatabase != null) {
+    public String registration(UserDto dto) {
+        if (userService.loadUserByUsername(dto.getUsername()) != null) {
             return "registration";
         }
-        customerService.createCustomer(userDto);
+        customerService.create(dto);
         return "login";
     }
 }

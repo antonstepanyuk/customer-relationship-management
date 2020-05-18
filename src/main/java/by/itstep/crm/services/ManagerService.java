@@ -21,13 +21,13 @@ public class ManagerService implements UserDetailsService {
         return managerRepository.findByUsername(username);
     }
 
-    public void createManager(UserDto userDto) {
+    public void create(UserDto dto) {
         //todo try/catch
         Manager manager = new Manager();
-        manager.setUsername(userDto.getUsername());
-        manager.setPassword(userDto.getPassword());
-        manager.setFirstName(userDto.getFirstName());
-        manager.setLastName(userDto.getLastName());
+        manager.setUsername(dto.getUsername());
+        manager.setPassword(dto.getPassword());
+        manager.setFirstName(dto.getFirstName());
+        manager.setLastName(dto.getLastName());
         manager.setActive(true);
         managerRepository.save(manager);
     }

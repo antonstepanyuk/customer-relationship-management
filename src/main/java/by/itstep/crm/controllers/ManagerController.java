@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/manager")
+@RequestMapping("manager")
 @PreAuthorize("hasAuthority('MANAGER')")
 public class ManagerController {
 

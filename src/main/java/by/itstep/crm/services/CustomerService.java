@@ -21,13 +21,14 @@ public class CustomerService implements UserDetailsService {
         return customerRepository.findByUsername(username);
     }
 
-    public void createCustomer(UserDto userDto) {
+    public void create(UserDto dto) {
         //todo try/catch
         Customer customer = new Customer();
-        customer.setUsername(userDto.getUsername());
-        customer.setPassword(userDto.getPassword());
-        customer.setFirstName(userDto.getFirstName());
-        customer.setLastName(userDto.getLastName());
+        customer.setUsername(dto.getUsername());
+        customer.setPassword(dto.getPassword());
+        customer.setFirstName(dto.getFirstName());
+        customer.setLastName(dto.getLastName());
+        //todo email for registration
         customerRepository.save(customer);
     }
 

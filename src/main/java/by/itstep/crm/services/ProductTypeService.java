@@ -27,11 +27,10 @@ public class ProductTypeService {
         return (List<ProductType>) productTypeRepository.findAll();
     }
 
-    public void create(String typeName, String comment) {
-
+    public void create(ProductTypeDto dto) {
         ProductType productType = new ProductType();
-        productType.setTypeName(typeName);
-        productType.setComment(comment);
+        productType.setTypeName(dto.getTypeName());
+        productType.setComment(dto.getComment());
         productTypeRepository.save(productType);
     }
 
@@ -39,16 +38,15 @@ public class ProductTypeService {
         productTypeRepository.deleteById(id);
     }
 
-    public void save(Long typeId, String typeName, String comment) {
-        ProductType typeFromDatabase = productTypeRepository.findProductTypeById(typeId);
-        if (!typeName.isEmpty()) {
-            typeFromDatabase.setTypeName(typeName);
+    public void save(ProductTypeDto dto) {
+        ProductType typeFromDatabase = productTypeRepository.findProductTypeById(dto.getId());
+        if (!dto.getTypeName().isEmpty()) {
+            typeFromDatabase.setTypeName(dto.getTypeName());
         }
-        if (!comment.isEmpty()) {
-            typeFromDatabase.setComment(comment);
+        if (!dto.getComment().isEmpty()) {
+            typeFromDatabase.setComment(dto.getComment());
         }
         productTypeRepository.save(typeFromDatabase);
     }
-
 
 }

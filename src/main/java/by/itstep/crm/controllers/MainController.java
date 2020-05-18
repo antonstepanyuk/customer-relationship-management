@@ -14,26 +14,23 @@ import java.util.Set;
 import static by.itstep.crm.entities.Role.*;
 
 @Controller
-@RequestMapping("/main")
+@RequestMapping("main")
 @PreAuthorize("isAuthenticated()")
 public class MainController {
 
     @GetMapping
-    public String main(
-            @AuthenticationPrincipal User user,
-            Model model){
+    public String main(@AuthenticationPrincipal User user, Model model) {
         Set<Role> role = user.getRole();
         //выдача контента по ролям
         if (role.contains(ADMINISTRATOR)) {
-           //todo Model for user
+            //todo Model for user
         } else if (role.contains(MANAGER)) {
             //todo Model for user
 
-        }else if (role.contains(CUSTOMER)){
+        } else if (role.contains(CUSTOMER)) {
             //todo Model for user
 
         }
-
         return "main";
     }
 

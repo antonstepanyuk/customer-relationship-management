@@ -6,19 +6,33 @@
     <title>Регистрация</title>
 </head>
 <body>
-
-<th:block th:insert="parts/navbar::navbar"/>
-
 <div class="container ">
-    <h1 th:text="'Регистрация'"/>
-    <div>
-        <form th:action="@{/registration}" method="post">
-            <div><label> <input type="text" name="username" placeholder="Введите имя пользователя"/> </label></div>
-            <div><label> <input type="password" name="password" placeholder="Придумайте пароль"/> </label></div>
-            <div><label> <input type="password" name="passwordСonfirmation" placeholder="Подтвердите пароль"/> </label>
+    <div class="row">
+        <div class="col-lg-4 mx-auto">
+            <div class="card p-3">
+                <div class="card-body">
+                    <div class="mb-3  text-center">
+                        <a href="/" th:text="LarionovaSew"/>
+                    </div>
+                    <h1 class="mb-3" th:text="'Регистрация'"/>
+                    <form class="mb-3" th:action="@{/registration}" method="post">
+                        <div class="mb-3"><input type="text" name="username" placeholder="Введите имя пользователя">
+                        </div>
+                        <div class="mb-3"><input type="password" name="password" placeholder="Придумайте пароль"></div>
+                        <div class="mb-3"><input type="password" name="passwordСonfirmation"
+                                                 placeholder="Подтвердите пароль"></div>
+                        <button class="btn btn-lg btn-dark btn-block mb-2 w-100" th:text="Зарегистрироваться" type="submit"/>
+                        <!--                        todo CONFIRMATION-->
+                        <a class="mb-3" href="#" th:text="'Забыли пароль?'"/>
+                    </form>
+                    <form class="form-group mb-3" th:action="@{/login}" method="get">
+                        <hr/>
+                        <span th:text="'Уже есть аккаунт?'"/>
+                        <button class="btn btn-lg btn-dark btn-block mt-2 w-100" th:text="Войти" type="submit"/>
+                    </form>
+                </div>
             </div>
-            <div><input type="submit" value="Зарегистрировать"/></div>
-        </form>
+        </div>
     </div>
 </div>
 

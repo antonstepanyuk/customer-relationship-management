@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<body>
+<th:block th:fragment="sidebar">
+
+    <th:block sec:authorize="hasAuthority('ADMINISTRATOR')">
+
+        <div class="bg-dark border-right position-fixed col-lg-2 px-0" style="min-height: 100vh">
+
+            <div class="list-group list-group-flush nav-item">
+                <a href="#users" data-toggle="collapse"
+                   class="list-group-item list-group-item-action text-light bg-dark">Пользователи</a>
+                <ul class="collapse list-unstyled" id="users">
+                    <li>
+                        <a class="list-group-item list-group-item-action bg-light " href="#">Типы пользователей</a>
+                    </li>
+                    <li>
+                        <a class="list-group-item list-group-item-action bg-light " href="#">Dfcz</a>
+                    </li>
+                    <li>
+                        <a class="list-group-item list-group-item-action bg-light " href="#">Dfcz</a>
+                    </li>
+                </ul>
+
+                <a href="#products" data-toggle="collapse"
+                   class="list-group-item list-group-item-action text-light bg-dark">Продукты</a>
+                <ul class="collapse list-unstyled" id="products">
+                    <li>
+                        <a class="list-group-item list-group-item-action bg-light " href="#">Dfcz</a>
+                    </li>
+                    <li>
+                        <a class="list-group-item list-group-item-action bg-light " href="#">Dfcz</a>
+                    </li>
+                    <li>
+                        <a class="list-group-item list-group-item-action bg-light " href="#">Dfcz</a>
+                    </li>
+                </ul>
+
+                <a href="#orders" data-toggle="collapse"
+                   class="list-group-item list-group-item-action text-light bg-dark">Продукты</a>
+                <ul class="collapse list-unstyled" id="orders">
+                    <li>
+                        <a class="list-group-item list-group-item-action bg-light " href="#">Dfcz</a>
+                    </li>
+                    <li>
+                        <a class="list-group-item list-group-item-action bg-light " href="#">Dfcz</a>
+                    </li>
+                    <li>
+                        <a class="list-group-item list-group-item-action bg-light " href="#">Dfcz</a>
+                    </li>
+                </ul>
+
+                <a href="#reminders" data-toggle="collapse"
+                   class="list-group-item list-group-item-action text-light bg-dark">Продукты</a>
+                <ul class="collapse list-unstyled" id="reminders">
+                    <li>
+                        <a class="list-group-item list-group-item-action bg-light " href="#">Dfcz</a>
+                    </li>
+                    <li>
+                        <a class="list-group-item list-group-item-action bg-light " href="#">Dfcz</a>
+                    </li>
+                    <li>
+                        <a class="list-group-item list-group-item-action bg-light " href="#">Dfcz</a>
+                    </li>
+                </ul>
+
+                <a href="#r" data-toggle="collapse"
+                   class="list-group-item list-group-item-action text-light bg-dark">Продукты</a>
+                <ul class="collapse list-unstyled" id="r">
+                    <li>
+                        <a class="list-group-item list-group-item-action bg-light " href="#">Dfcz</a>
+                    </li>
+                    <li>
+                        <a class="list-group-item list-group-item-action bg-light " href="#">Dfcz</a>
+                    </li>
+                    <li>
+                        <a class="list-group-item list-group-item-action bg-light " href="#">Dfcz</a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+
+    </th:block>
+
+    <th:block sec:authorize="hasAuthority('MANAGER')">
+        <!--todo-->
+    </th:block>
+
+    <th:block sec:authorize="hasAuthority('CUSTOMER')">
+        <!--todo-->
+    </th:block>
+</th:block>
+</body>
+</html>
